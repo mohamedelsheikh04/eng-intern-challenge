@@ -74,19 +74,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Test cases
-translator = BrailleTranslator()
-
-test_cases = [
-    "Hello world",
-    ".....OO.OO..O..O..O.O.O.O.O.O.O..OO........OOO.OO..OO.O.OOO.O.O.O.OO.O..",
-    "42",
-    "Abc 123",
-    ".....OO.....O.O...OO...........O.OOOO.....O.O...OO...."
-]
-
-for test in test_cases:
-    print(f"Input: {test}")
-    print(f"Output: {translator.translate(test)}")
-    print()
