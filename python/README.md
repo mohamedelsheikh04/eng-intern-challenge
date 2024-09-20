@@ -1,93 +1,82 @@
-# Python Instructions
+# Braille Translator: Development Process
 
-Note that the Python version used is 3.8
+This document outlines the process of developing and testing the Braille translator, a Python-based command-line tool that converts text between English and Braille.
 
-# Braille Translator
+## Development Steps
 
-This project implements a command-line Braille translator that can convert text between English and Braille. It supports translation in both directions and handles uppercase letters, numbers, and spaces.
+1. **Initial Setup**
+   - Created a new Python file named `translator.py`.
+   - Added the shebang line `#!/usr/bin/env python3` for Unix-like systems.
+   - Imported the `sys` module for handling command-line arguments.
 
-## Features
+2. **BrailleTranslator Class Design**
+   - Defined the `BrailleTranslator` class to encapsulate all translation logic.
+   - Created dictionaries for Braille-to-English and English-to-Braille mappings.
+   - Defined constants for number prefix and capital letter prefix in Braille.
+   - Created a dictionary for number representations in Braille.
 
-- Translate English text to Braille
-- Translate Braille to English text
-- Support for uppercase letters
-- Support for numbers
-- Automatic detection of input type (English or Braille)
+3. **Translation Methods**
+   - Implemented `translate` method to determine input type and call appropriate translation function.
+   - Created `is_braille` static method to detect if input is Braille.
+   - Developed `braille_to_english` method for Braille to English translation:
+     - Handles capital letters and numbers.
+     - Processes input in 6-character chunks.
+   - Implemented `english_to_braille` method for English to Braille translation:
+     - Handles uppercase letters, numbers, and spaces.
 
-## Requirements
+4. **Main Function**
+   - Created `main()` function to handle command-line input.
+   - Implemented input validation and error handling for insufficient arguments.
+   - Instantiated `BrailleTranslator` and called `translate` method with joined input arguments.
 
-- Python 3.6 or higher
+5. **Testing**
+   - Added test cases directly in the script for quick verification.
+   - Created a list of test cases covering various scenarios:
+     - English to Braille
+     - Braille to English
+     - Numbers
+     - Mixed case and numbers
+   - Implemented a simple loop to run and display results for all test cases.
 
-## Installation
+## Testing Process
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/your-username/braille-translator.git
-   cd braille-translator
-   ```
+1. **Manual Testing**
+   - Ran the script with various inputs to verify basic functionality.
+   - Tested edge cases like empty input, single characters, and long strings.
 
-2. No additional dependencies are required.
+2. **Automated Testing**
+   - Integrated test cases directly into the script for continuous verification.
+   - Test cases cover:
+     - Simple English phrases
+     - Braille input
+     - Numeric input
+     - Mixed alphanumeric input with varied capitalization
 
-## Usage
+3. **Iterative Improvements**
+   - Identified and fixed issues with number handling and capitalization.
+   - Refined the translation logic based on test results.
 
-To use the Braille translator, run the `translator.py` script with your input text as command-line arguments:
+## Challenges and Solutions
 
-```
-python3 translator.py <input text>
-```
+1. **Handling Numbers**
+   - Challenge: Representing numbers in Braille requires a special prefix.
+   - Solution: Implemented a number mode triggered by the number prefix in Braille.
 
-For example:
+2. **Capitalization**
+   - Challenge: Braille uses a capital letter prefix for uppercase letters.
+   - Solution: Added logic to handle the capital prefix in Braille-to-English translation.
 
-```
-python3 translator.py Hello World
-```
-
-This will output the Braille translation:
-
-```
-.....OO.OO..O..O..O.O.O.O.O.O.O..OO........OOO.OO..OO.O.OOO.O.O.O.OO.O..
-```
-
-To translate from Braille to English, simply input the Braille code:
-
-```
-python3 translator.py .....OO.OO..O..O..O.O.O.O.O.O.O..OO........OOO.OO..OO.O.OOO.O.O.O.OO.O..
-```
-
-This will output:
-
-```
-Hello World
-```
-
-## Testing
-
-To run the unit tests, use the following command:
-
-```
-python3 test_translator.py
-```
-
-This will run the test suite and report any failures.
-
-## Implementation Details
-
-The Braille translator is implemented in the `BrailleTranslator` class in `translator.py`. It uses dictionaries to map between English characters and their Braille representations. The translator can handle:
-
-- Lowercase letters (a-z)
-- Uppercase letters (A-Z)
-- Numbers (0-9)
-- Spaces
-
-For Braille input, each character is represented by a 6-character string of dots (O) and dashes (.).
-
-## Limitations
-
-- The current implementation does not support punctuation marks.
-- It assumes well-formed input and may not handle all edge cases.
+3. **Input Validation**
+   - Challenge: Ensuring robust handling of various input types.
+   - Solution: Implemented `is_braille` method to automatically detect input type.
 
 ## Future Improvements
 
-- Add support for punctuation marks
-- Implement error handling for malformed input
-- Extend the test suite to cover more cases
+- Implement more comprehensive error handling for malformed input.
+- Add support for punctuation marks.
+- Create a separate test suite file for more extensive unit testing.
+- Optimize performance for handling larger inputs.
+
+## Conclusion
+
+The development process of this Braille translator focused on creating a robust, functional tool with built-in testing capabilities. The iterative approach allowed for continuous improvement and validation of the translation logic.
